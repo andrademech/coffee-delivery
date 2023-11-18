@@ -82,7 +82,7 @@ export default function CheckoutForm() {
               id={input.id}
               placeholder={input.placeholder}
               {...register(input.id)}
-              className="w-full h-8 rounded px-4 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full h-8 rounded px-4 border border-zinc-300  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
             />
           ))}
         </div>

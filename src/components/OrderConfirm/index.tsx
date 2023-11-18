@@ -44,9 +44,9 @@ export function OrderConfirm() {
                     <div className="flex flex-col">
                       <span>
                         Entrega em
-                        <strong className="text-slate-900">{` ${address}, ${number}`}</strong>
+                        <strong className="text-zinc-900">{` ${address}, ${number}`}</strong>
                       </span>
-                      <span className="text-slate-900">{`${district}, ${city}, ${state}`}</span>
+                      <span className="text-zinc-900">{`${district}, ${city}, ${state}`}</span>
                     </div>
                   </div>
 
@@ -57,12 +57,8 @@ export function OrderConfirm() {
                       className="text-white bg-amber-600 rounded-full p-[6px]"
                     />
                     <div className="flex flex-col">
-                      <span className="text-slate-900">
-                        Previsão de entrega
-                      </span>
-                      <strong className="text-slate-900">
-                        25 min - 35 min
-                      </strong>
+                      <span className="text-zinc-900">Previsão de entrega</span>
+                      <strong className="text-zinc-900">25 min - 35 min</strong>
                     </div>
                   </div>
 
@@ -73,10 +69,10 @@ export function OrderConfirm() {
                       className="text-white bg-yellow-600 rounded-full p-[6px]"
                     />
                     <div className="flex flex-col">
-                      <span className="text-slate-900">
+                      <span className="text-zinc-900">
                         Pagamento na entrega
                       </span>
-                      <strong className="text-slate-900">
+                      <strong className="text-zinc-900">
                         {transactionMethod === 'pix' ? 'Dinheiro' : 'Cartão'}
                       </strong>
                     </div>

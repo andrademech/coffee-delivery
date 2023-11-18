@@ -4,11 +4,11 @@ import { CoffeeCard } from '../CoffeeCard'
 export function CoffeeList() {
   return (
     <section className="flex flex-col items-center justify-between">
-      <h1 className="text-3xl justify-start w-full mt-8 mb-14 text-slate-800">
+      <h1 className="text-3xl justify-start w-full mt-8 mb-14 text-zinc-800 dark:text-zinc-100">
         Nossos cafés
       </h1>
 
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 grid-cols-4 gap-x-8 gap-y-10 pb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24 pb-8">
         {coffeeList.map(
           ({ id, coffeeName, description, image, price, tag }) => {
             return (

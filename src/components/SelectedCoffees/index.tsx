@@ -149,7 +149,7 @@ export function SelectedCoffees() {
             type="submit"
             className={cx(
               isSubmitDisabled
-                ? 'bg-gray-400 cursor-not-allowed'
+                ? 'bg-zinc-400 cursor-not-allowed'
                 : 'bg-purple-500 hover:bg-purple-600',
               'flex items-center justify-center gap-2 rounded py-2 px-4 w-full',
             )}
