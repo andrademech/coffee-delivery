@@ -4,9 +4,9 @@ import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 
 export function Intro() {
   return (
-    <div className="mb-[6.25rem] mt-[5.75rem] grid grid-cols-2 gap-14">
+    <div className="mb-12 grid gap-14 md:mb-[6.25rem] md:mt-[5.75rem] md:grid-cols-2">
       <div className="flex flex-col gap-4">
-        <h1 className="text-5xl text-zinc-800 dark:text-zinc-100">
+        <h1 className="text-3xl text-zinc-800 dark:text-zinc-100 sm:text-4xl md:text-5xl">
           Encontre o café perfeito <br /> para qualquer hora do dia
         </h1>
         <p className="text-zinc-800 dark:text-zinc-100">
@@ -14,7 +14,7 @@ export function Intro() {
           hora
         </p>
 
-        <div className="sgrid-cols-1 mt-16 grid gap-y-5 xl:grid-cols-2">
+        <div className="mt-16 grid gap-y-5 xl:grid-cols-2">
           <div className="flex w-[14.4375rem] items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-600 dark:bg-amber-400">
               <ShoppingCart

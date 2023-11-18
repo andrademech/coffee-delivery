@@ -9,6 +9,9 @@ export default {
       colors: {
         ...blackA,
       },
+      screens: {
+        xs: '460px',
+      },
     },
   },
   plugins: [],

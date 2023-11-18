@@ -49,12 +49,16 @@ export function CoffeeCard({
           </span>
         ))}
       </div>
-      <h2 className="pt-4 text-center text-xl font-bold">{coffeeName}</h2>
+      <h2 className="pt-4 text-center text-xl font-bold dark:text-amber-100">
+        {coffeeName}
+      </h2>
 
-      <p className="w-3/4 pt-2 text-center text-xs">{description}</p>
+      <p className="mt-2 w-3/4 text-center text-xs font-bold dark:mx-1 dark:rounded dark:text-amber-500 dark:opacity-80">
+        {description}
+      </p>
 
       <div className="flex items-center gap-3 pt-[2.0625rem] text-xl font-bold">
-        <h2>
+        <h2 className="dark:text-amber-500 dark:opacity-80">
           <strong>{priceFormatter.format(price)}</strong>
         </h2>
 
@@ -64,9 +68,13 @@ export function CoffeeCard({
               onClick={() => {
                 handleRemoveFromCart(id)
               }}
-              className="flex w-8 items-center justify-center rounded px-1 py-2 hover:bg-purple-400"
+              className="flex w-8 items-center justify-center rounded px-1 py-2 hover:bg-purple-400 dark:hover:bg-amber-700"
             >
-              <Minus size={18} weight="fill" className="text-purple-900" />
+              <Minus
+                size={18}
+                weight="fill"
+                className="text-purple-900 dark:text-amber-900"
+              />
             </button>
             <span className="text-base">{localItemQuantity}</span>
             <button
@@ -80,12 +88,16 @@ export function CoffeeCard({
                   price,
                 })
               }}
-              className="flex w-8 items-center justify-center rounded px-1 py-2 hover:bg-purple-400"
+              className="flex w-8 items-center justify-center rounded px-1 py-2 hover:bg-purple-400 dark:hover:bg-amber-700"
             >
-              <Plus size={18} weight="fill" className="text-purple-900" />
+              <Plus
+                size={18}
+                weight="fill"
+                className="text-purple-900 dark:text-amber-900"
+              />
             </button>
           </div>
-          <button className="rounded bg-purple-200 p-2 text-purple-900 hover:bg-purple-400">
+          <button className="rounded bg-purple-200 p-2 text-purple-900 hover:bg-purple-400 dark:bg-[#E6E5E5] dark:text-amber-950 dark:hover:bg-amber-500">
             <Link to="/checkout">
               <ShoppingCart size={18} weight="fill" />
             </Link>

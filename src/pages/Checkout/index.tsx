@@ -56,32 +56,30 @@ export function Checkout() {
   }
 
   return (
-    <div className="mb-4 flex flex-col items-center gap-4 xl:flex-row xl:items-start">
-      <form
-        onSubmit={handleSubmit(handleNewCheckoutFormSubmit)}
-        className="mx-auto flex flex-col items-center gap-4"
-      >
-        {totalCartQuantity > 0 ? (
-          <FormProvider {...newCheckoutForm}>
-            <CheckoutForm />
-            <SelectedCoffees />
-          </FormProvider>
-        ) : (
-          <div className="flex w-full flex-col items-center justify-center gap-4 rounded bg-purple-100 p-8">
-            <h3 className="text-lg">Nenhum café selecionado</h3>
-            <p className="text-center text-sm">
-              Retorne para selecionar um café e finalizar seu pedido
-            </p>
-            <Link to="/">
-              <img
-                src={coffeeDeliveryLogo}
-                width={80}
-                alt="Coffee Delivery Logo"
-              />
-            </Link>
-          </div>
-        )}
-      </form>
-    </div>
+    <form
+      onSubmit={handleSubmit(handleNewCheckoutFormSubmit)}
+      className="flex flex-col items-center justify-center gap-4 lg:flex-row lg:items-start"
+    >
+      {totalCartQuantity > 0 ? (
+        <FormProvider {...newCheckoutForm}>
+          <CheckoutForm />
+          <SelectedCoffees />
+        </FormProvider>
+      ) : (
+        <div className="flex w-full flex-col items-center justify-center gap-4 rounded bg-purple-100 p-8">
+          <h3 className="text-lg">Nenhum café selecionado</h3>
+          <p className="text-center text-sm">
+            Retorne para selecionar um café e finalizar seu pedido
+          </p>
+          <Link to="/">
+            <img
+              src={coffeeDeliveryLogo}
+              width={80}
+              alt="Coffee Delivery Logo"
+            />
+          </Link>
+        </div>
+      )}
+    </form>
   )
 }

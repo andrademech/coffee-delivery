@@ -56,23 +56,25 @@ export function SelectedCoffees() {
   }, [cart])
 
   return (
-    <div className="flex min-w-[28rem] flex-col gap-3 ">
-      <h3 className="text-lg">Cafés selecionados</h3>
-      <div className="flex flex-col rounded-bl-[36px] rounded-br rounded-tl rounded-tr-[36px] bg-[#F3F2F2] p-10">
+    <div className="mt-4 flex w-full max-w-[30rem] flex-col gap-3 ">
+      <h3 className="text-lg dark:text-purple-100">Cafés selecionados</h3>
+      <div className="flex flex-col rounded-bl-[36px] rounded-br rounded-tl rounded-tr-[36px] bg-[#F3F2F2] p-4 dark:bg-zinc-800 dark:text-zinc-300 sm:p-8 md:p-10">
         <>
           {cart.map(({ cartItem, quantity }) => {
             return (
               <div key={cartItem.id} className="flex gap-4 border-b pb-4">
                 <img src={cartItem.image} alt="" width={64} height={64} />
-                <div className="flex flex-col">
+                <div className="flex w-full flex-col">
                   <div className="flex justify-between py-2 text-base font-normal">
-                    <h4>{cartItem.coffeeName}</h4>
+                    <h4 className="text-sm font-bold md:text-sm">
+                      {cartItem.coffeeName}
+                    </h4>
                     <span>
                       <strong>{priceFormatter.format(cartItem.price)}</strong>
                     </span>
                   </div>
                   <div className="flex items-center gap-2 rounded text-xl">
-                    <div className="flex items-center gap-2 rounded bg-[#E6E5E5]">
+                    <div className="flex items-center gap-2 rounded bg-[#E6E5E5] dark:bg-zinc-100">
                       <Button
                         className={cx(
                           quantity === 1 && 'hover:bg-red-600 ',
@@ -86,10 +88,13 @@ export function SelectedCoffees() {
                             className="text-red-700 transition-colors group-hover:text-white"
                           />
                         ) : (
-                          <Minus size={18} className="text-purple-500" />
+                          <Minus
+                            size={18}
+                            className="text-purple-500 dark:text-purple-950"
+                          />
                         )}
                       </Button>
-                      <span className="bold items-center text-base">
+                      <span className="bold items-center text-base dark:text-purple-950">
                         {quantity}
                       </span>
                       <Button
@@ -105,12 +110,15 @@ export function SelectedCoffees() {
                           })
                         }
                       >
-                        <Plus size={18} className="text-purple-500" />
+                        <Plus
+                          size={18}
+                          className="text-purple-500 dark:text-purple-950"
+                        />
                       </Button>
                     </div>
-                    <div className="group flex items-center">
+                    <div className="xs:inline group hidden items-center">
                       <Button
-                        className="flex cursor-pointer items-center justify-center gap-2 rounded bg-[#E6E5E5] p-2 transition-colors group-hover:bg-red-600"
+                        className="flex cursor-pointer items-center justify-center gap-2 rounded bg-[#E6E5E5] p-2 transition-colors group-hover:bg-red-600 dark:bg-zinc-100"
                         onClick={() => handleClearCart(cartItem.id)}
                       >
                         <Trash
@@ -129,18 +137,18 @@ export function SelectedCoffees() {
           })}
           <div className="mt-4 flex flex-col gap-3">
             <div className="flex justify-between">
-              <h4 className="text-sm">Total de itens</h4>
+              <h4 className="text-sm md:text-sm">Total de itens</h4>
               <span>{priceFormatter.format(totalCartPrice)}</span>
             </div>
 
             <div className="flex justify-between">
-              <h4 className="text-sm">Entrega</h4>
+              <h4 className="text-sm md:text-sm">Entrega</h4>
               <span>{priceFormatter.format(totalCartPrice * 0.05)}</span>
             </div>
 
             <div className="mb-6 flex justify-between">
-              <h4 className="text-xl font-bold">Total</h4>
-              <strong className="text-xl">
+              <h4 className="text-lg font-bold md:text-xl">Total</h4>
+              <strong className="text-lg font-bold md:text-xl">
                 {priceFormatter.format(totalCartPrice)}
               </strong>
             </div>
@@ -156,9 +164,13 @@ export function SelectedCoffees() {
             disabled={isSubmitDisabled}
           >
             {isSubmitDisabled ? (
-              <span className="font-bold text-white">PREENCHA OS DADOS...</span>
+              <span className="font-bold text-white">
+                Ops... Observe o formulário
+              </span>
             ) : (
-              <span className="font-bold text-white">CONFIRMAR PEDIDO</span>
+              <span className="font-bold text-white">
+                Yeah! Confirmar pedido 🔥
+              </span>
             )}
           </button>
         </>
