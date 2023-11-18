@@ -45,17 +45,17 @@ const radioGroupData = [
   {
     id: 'credit-card',
     label: 'Cartão de Crédito',
-    icon: <CreditCard size={22} className="text-purple-700 rounded" />,
+    icon: <CreditCard size={22} className="rounded text-purple-700" />,
   },
   {
     id: 'debit-card',
     label: 'Cartão de Débito',
-    icon: <Bank size={22} className="text-purple-700 rounded" />,
+    icon: <Bank size={22} className="rounded text-purple-700" />,
   },
   {
     id: 'pix',
     label: 'Pix',
-    icon: <Money size={22} className="text-purple-700 rounded" />,
+    icon: <Money size={22} className="rounded text-purple-700" />,
   },
 ]
 
@@ -64,17 +64,17 @@ export default function CheckoutForm() {
 
   return (
     <>
-      <div className="w-[40rem] flex flex-col p-10 bg-[#F3F2F2] rounded">
-        <div className="flex w-full justify-center gap-2 items-start">
-          <MapPinLine size={22} className="text-purple-500 rounded" />
-          <div className="flex flex-col w-full items-center">
-            <h2 className="text-left text-base w-full">Endereço de Entrega</h2>
-            <span className="text-left font-light text-sm w-full">
+      <div className="flex w-[40rem] flex-col rounded bg-[#F3F2F2] p-10">
+        <div className="flex w-full items-start justify-center gap-2">
+          <MapPinLine size={22} className="rounded text-purple-500" />
+          <div className="flex w-full flex-col items-center">
+            <h2 className="w-full text-left text-base">Endereço de Entrega</h2>
+            <span className="w-full text-left text-sm font-light">
               Insira o endereço onde deseja receber seu pedido
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-4 mt-8">
+        <div className="mt-8 flex flex-col gap-4">
           {inputData.map((input) => (
             <input
               key={input.id}
@@ -82,29 +82,29 @@ export default function CheckoutForm() {
               id={input.id}
               placeholder={input.placeholder}
               {...register(input.id)}
-              className="w-full h-8 rounded px-4 border border-zinc-300  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="h-8 w-full rounded border border-zinc-300 px-4  focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           ))}
         </div>
       </div>
-      <div className="w-[40rem] flex flex-col p-10 bg-[#F3F2F2] rounded">
-        <div className="flex w-full justify-center gap-2 items-start">
-          <CurrencyDollar size={22} className="text-purple-500 rounded" />
-          <div className="flex flex-col w-full items-center">
-            <h2 className="text-left text-base w-full">Pagamento</h2>
-            <span className="text-left font-light text-sm w-full">
+      <div className="flex w-[40rem] flex-col rounded bg-[#F3F2F2] p-10">
+        <div className="flex w-full items-start justify-center gap-2">
+          <CurrencyDollar size={22} className="rounded text-purple-500" />
+          <div className="flex w-full flex-col items-center">
+            <h2 className="w-full text-left text-base">Pagamento</h2>
+            <span className="w-full text-left text-sm font-light">
               O pagamento é feito na entrega. Escolha a forma que deseja pagar
             </span>
           </div>
         </div>
-        <div className="flex gap-3 mt-8">
+        <div className="mt-8 flex gap-3">
           <Controller
             name="transactionMethod"
             control={control}
             render={({ field }) => {
               return (
                 <RadioGroup.Root
-                  className="flex gap-4 w-full justify-between items-center"
+                  className="flex w-full items-center justify-between gap-4"
                   onValueChange={field.onChange}
                   value={field.value}
                 >
@@ -112,7 +112,7 @@ export default function CheckoutForm() {
                     <RadioGroup.Item
                       key={radio.id}
                       value={radio.id}
-                      className="flex justify-center items-center px-4 min-w-[140px] h-8 gap-4 rounded data-[state=checked]:bg-purple-300 py-5 hover:bg-purple-200 transition-colors"
+                      className="flex h-8 min-w-[140px] items-center justify-center gap-4 rounded px-4 py-5 transition-colors hover:bg-purple-200 data-[state=checked]:bg-purple-300"
                       {...register(radio.id)}
                     >
                       {radio.icon}

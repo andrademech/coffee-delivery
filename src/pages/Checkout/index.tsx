@@ -56,10 +56,10 @@ export function Checkout() {
   }
 
   return (
-    <div className="flex flex-col xl:flex-row gap-4 items-center xl:items-start mb-4">
+    <div className="mb-4 flex flex-col items-center gap-4 xl:flex-row xl:items-start">
       <form
         onSubmit={handleSubmit(handleNewCheckoutFormSubmit)}
-        className="flex flex-col items-center gap-4 mx-auto"
+        className="mx-auto flex flex-col items-center gap-4"
       >
         {totalCartQuantity > 0 ? (
           <FormProvider {...newCheckoutForm}>
@@ -67,9 +67,9 @@ export function Checkout() {
             <SelectedCoffees />
           </FormProvider>
         ) : (
-          <div className="flex flex-col items-center justify-center gap-4 bg-purple-100 p-8 rounded w-full">
+          <div className="flex w-full flex-col items-center justify-center gap-4 rounded bg-purple-100 p-8">
             <h3 className="text-lg">Nenhum café selecionado</h3>
-            <p className="text-sm text-center">
+            <p className="text-center text-sm">
               Retorne para selecionar um café e finalizar seu pedido
             </p>
             <Link to="/">

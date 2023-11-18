@@ -11,19 +11,19 @@ export function OrderConfirm() {
   console.log({ orders })
 
   return (
-    <section className="flex flex-col mt-10 lg:flex-row">
+    <section className="mt-10 flex flex-col lg:flex-row">
       <div className="flex flex-col">
-        <h1 className="text-2xl justify-start w-full mt-8 text-purple-900">
+        <h1 className="mt-8 w-full justify-start text-2xl text-purple-900">
           Uhu! Pedido Confirmado
         </h1>
         <h4 className="text-purple-900">
           Agora é só aguardar que em breve você receberá seu pedido em casa
         </h4>
 
-        <div className="flex flex-col px-10 py-6 rounded-tl rounded-bl-[36px] rounded-tr-[36px] rounded-br bg-[#F3F2F2] mt-8">
+        <div className="mt-8 flex flex-col rounded-bl-[36px] rounded-br rounded-tl rounded-tr-[36px] bg-[#F3F2F2] px-10 py-6">
           <h3 className="text-xl text-purple-900">Detalhes do pedido</h3>
 
-          <div className="flex flex-col gap-4 mt-4">
+          <div className="mt-4 flex flex-col gap-4">
             {orders.map(
               ({
                 id,
@@ -35,11 +35,11 @@ export function OrderConfirm() {
                 transactionMethod,
               }) => (
                 <div className="flex flex-col gap-6" key={id}>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex items-center gap-4">
                     <MapPin
                       size={30}
                       weight="fill"
-                      className="text-white bg-purple-600 rounded-full p-[4px]"
+                      className="rounded-full bg-purple-600 p-[4px] text-white"
                     />
                     <div className="flex flex-col">
                       <span>
@@ -50,11 +50,11 @@ export function OrderConfirm() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4 items-center">
+                  <div className="flex items-center gap-4">
                     <Clock
                       size={30}
                       weight="fill"
-                      className="text-white bg-amber-600 rounded-full p-[6px]"
+                      className="rounded-full bg-amber-600 p-[6px] text-white"
                     />
                     <div className="flex flex-col">
                       <span className="text-zinc-900">Previsão de entrega</span>
@@ -62,11 +62,11 @@ export function OrderConfirm() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4 items-center">
+                  <div className="flex items-center gap-4">
                     <Money
                       size={30}
                       weight="fill"
-                      className="text-white bg-yellow-600 rounded-full p-[6px]"
+                      className="rounded-full bg-yellow-600 p-[6px] text-white"
                     />
                     <div className="flex flex-col">
                       <span className="text-zinc-900">

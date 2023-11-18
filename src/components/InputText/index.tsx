@@ -29,7 +29,7 @@ export function InputText({
   return (
     <div
       className={cx(
-        'flex items-center text-[#273E56] pt-[0.0625rem] placeholder:text-[#273E56] bg-transparent border border-[#D6E5EA] transition-all rounded h-[2.75rem]',
+        'flex h-[2.75rem] items-center rounded border border-[#D6E5EA] bg-transparent pt-[0.0625rem] text-[#273E56] transition-all placeholder:text-[#273E56]',
         className,
       )}
     >
@@ -42,7 +42,7 @@ export function InputText({
         onKeyUp={onKeyUp}
         readOnly={readOnly}
         className={cx(
-          'w-full h-full rounded bg-transparent outline-none text-sm text-inherit pl-[1rem] pr-[2.5rem] placeholder:text-inherit placeholder:opacity-75 ',
+          'h-full w-full rounded bg-transparent pl-[1rem] pr-[2.5rem] text-sm text-inherit outline-none placeholder:text-inherit placeholder:opacity-75 ',
           { 'text-text_dark_opacity-75': readOnly },
         )}
         type={type}
