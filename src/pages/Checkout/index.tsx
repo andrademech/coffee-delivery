@@ -10,13 +10,13 @@ import { useContextSelector } from 'use-context-selector'
 import { CartContext } from '../../contexts/CartContext'
 
 const newCheckoutFormValidationSchema = zod.object({
-  cep: zod.string().nonempty(),
-  address: zod.string().nonempty(),
-  number: zod.string().nonempty(),
+  cep: zod.string().nonempty('CEP é obrigatório'),
+  address: zod.string().nonempty('Endereço é obrigatório'),
+  number: zod.string().nonempty('Número é obrigatório'),
   complement: zod.string().optional(),
-  district: zod.string().nonempty(),
-  city: zod.string().nonempty(),
-  state: zod.string().nonempty(),
+  district: zod.string().nonempty('Bairro é obrigatório'),
+  city: zod.string().nonempty('Cidade é obrigatório'),
+  state: zod.string().nonempty('UF é obrigatório'),
   transactionMethod: zod.enum(['credit-card', 'debit-card', 'pix']),
 })
 
