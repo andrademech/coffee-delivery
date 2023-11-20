@@ -6,6 +6,8 @@ import coffeeDeliveryLogo from '../../assets/coffee_delivery_logo.svg'
 import * as zod from 'zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useContextSelector } from 'use-context-selector'
+import { CartContext } from '../../contexts/CartContext'
 
 const newCheckoutFormValidationSchema = zod.object({
   cep: zod.string().nonempty(),
@@ -44,12 +46,31 @@ export function Checkout() {
 
   const { handleSubmit } = newCheckoutForm
 
+  const { createOrder } = useContextSelector(CartContext, (context) => ({
+    createOrder: context.createOrder,
+  }))
+
   function handleNewCheckoutFormSubmit(data: NewCheckoutFormData) {
     console.log(`Here is your data: ${JSON.stringify(data, null, 2)}`)
 
     console.log(`
     You selected ${totalCartQuantity} coffee(s) and your total is ${totalCartQuantity}
     `)
+
+    // Create new order
+    createOrder({
+      order: {
+        id: Math.floor(Math.random() * 1000),
+        cep: data.cep,
+        address: data.address,
+        number: data.number,
+        complement: data.complement,
+        district: data.district,
+        city: data.city,
+        state: data.state,
+        transactionMethod: data.transactionMethod,
+      },
+    })
 
     // Sending to success route
     navigate('/success')

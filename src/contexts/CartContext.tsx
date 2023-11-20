@@ -16,6 +16,22 @@ export interface ICartProps {
   quantity: number
 }
 
+interface Order {
+  id: number
+  cep: string
+  address: string
+  number: string
+  complement?: string
+  district: string
+  city: string
+  state: string
+  transactionMethod: string
+}
+
+interface CreateOrderInput {
+  order: Order
+}
+
 interface CartContextData {
   cart: ICartProps[]
   handleAddToCart: (item: CartItem) => void
@@ -23,6 +39,8 @@ interface CartContextData {
   handleClearCart: (id: number) => void
   itemQuantity: number
   setItemQuantity: React.Dispatch<React.SetStateAction<number>>
+  orders: Order[]
+  createOrder: (data: CreateOrderInput) => void
 }
 
 export const CartContext = createContext({} as CartContextData)
@@ -34,6 +52,7 @@ interface CartProviderProps {
 export function CartProvider({ children }: CartProviderProps) {
   const [cart, setCart] = useState<ICartProps[]>([])
   const [itemQuantity, setItemQuantity] = useState<number>(0)
+  const [orders, setOrders] = useState<Order[]>([])
 
   useEffect(() => {
     // Retrieve cart data from local storage when the component mounts
@@ -155,6 +174,16 @@ export function CartProvider({ children }: CartProviderProps) {
     localStorage.setItem('itemQuantity', String(itemQuantity))
   }, [cart, itemQuantity])
 
+  const createOrder = (data: CreateOrderInput) => {
+    const { order: newOrder } = data
+
+    setOrders(() => [newOrder])
+
+    console.log({ orders })
+
+    return newOrder
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -164,6 +193,8 @@ export function CartProvider({ children }: CartProviderProps) {
         handleClearCart,
         itemQuantity,
         setItemQuantity,
+        orders,
+        createOrder,
       }}
     >
       {children}

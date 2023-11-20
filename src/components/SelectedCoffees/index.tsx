@@ -116,7 +116,7 @@ export function SelectedCoffees() {
                         />
                       </Button>
                     </div>
-                    <div className="xs:inline group hidden items-center">
+                    <div className="group hidden items-center xs:inline">
                       <Button
                         className="flex cursor-pointer items-center justify-center gap-2 rounded bg-[#E6E5E5] p-2 transition-colors group-hover:bg-red-600 dark:bg-zinc-100"
                         onClick={() => handleClearCart(cartItem.id)}

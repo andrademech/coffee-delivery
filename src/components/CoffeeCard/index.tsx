@@ -76,7 +76,9 @@ export function CoffeeCard({
                 className="text-purple-900 dark:text-amber-900"
               />
             </button>
-            <span className="text-base">{localItemQuantity}</span>
+            <span className="text-base dark:text-amber-900">
+              {localItemQuantity}
+            </span>
             <button
               onClick={() => {
                 handleAddToCart({
