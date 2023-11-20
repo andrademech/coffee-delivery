@@ -36,62 +36,74 @@ export function CoffeeCard({
   }, [cart, id])
 
   return (
-    <div className="grid grid-cols-4">
-      <div className="flex w-[16rem] flex-col items-center rounded-tl rounded-bl-[36px] rounded-tr-[36px] rounded-br h-[19.375rem] bg-[#F3F2F2] shadow-2xl">
-        <img src={image} alt={coffeeName} width={120} className="mt-[-20px]" />
+    <div className="flex h-[19.375rem] w-[16rem] flex-col items-center rounded-bl-[36px] rounded-br rounded-tl rounded-tr-[36px] bg-[#F3F2F2] shadow-2xl dark:bg-zinc-800">
+      <img src={image} alt={coffeeName} width={120} className="mt-[-20px]" />
 
-        <div className="flex pt-3 flex-row justify-center items-center w-full">
-          {tag.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs font-bold text-center rounded-full px-2 py-1 mx-1 bg-amber-100 text-amber-900"
+      <div className="flex w-full flex-row items-center justify-center pt-3">
+        {tag.map((tag) => (
+          <span
+            key={tag}
+            className="mx-1 rounded-full bg-amber-100 px-2 py-1 text-center text-xs font-bold text-amber-900"
+          >
+            {tag.toUpperCase()}
+          </span>
+        ))}
+      </div>
+      <h2 className="pt-4 text-center text-xl font-bold dark:text-amber-100">
+        {coffeeName}
+      </h2>
+
+      <p className="mt-2 w-3/4 text-center text-xs font-bold dark:mx-1 dark:rounded dark:text-amber-500 dark:opacity-80">
+        {description}
+      </p>
+
+      <div className="flex items-center gap-3 pt-[2.0625rem] text-xl font-bold">
+        <h2 className="dark:text-amber-500 dark:opacity-80">
+          <strong>{priceFormatter.format(price)}</strong>
+        </h2>
+
+        <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-3 rounded bg-[#E6E5E5] text-xl">
+            <button
+              onClick={() => {
+                handleRemoveFromCart(id)
+              }}
+              className="flex w-8 items-center justify-center rounded px-1 py-2 hover:bg-purple-400 dark:hover:bg-amber-700"
             >
-              {tag.toUpperCase()}
+              <Minus
+                size={18}
+                weight="fill"
+                className="text-purple-900 dark:text-amber-900"
+              />
+            </button>
+            <span className="text-base dark:text-amber-900">
+              {localItemQuantity}
             </span>
-          ))}
-        </div>
-        <h2 className="text-xl font-bold text-center pt-4">{coffeeName}</h2>
-
-        <p className="text-xs w-3/4 text-center pt-2">{description}</p>
-
-        <div className="flex items-center text-xl font-bold gap-3 pt-[2.0625rem]">
-          <h2>
-            <strong>{priceFormatter.format(price)}</strong>
-          </h2>
-
-          <div className="flex items-center gap-2 justify-center">
-            <div className="flex gap-3 text-xl bg-[#E6E5E5] rounded items-center justify-center">
-              <button
-                onClick={() => {
-                  handleRemoveFromCart(id)
-                }}
-                className="flex items-center justify-center hover:bg-purple-400 py-2 px-1 w-8 rounded"
-              >
-                <Minus size={18} weight="fill" className="text-purple-900" />
-              </button>
-              <span className="text-base">{localItemQuantity}</span>
-              <button
-                onClick={() => {
-                  handleAddToCart({
-                    id,
-                    coffeeName,
-                    image,
-                    tag,
-                    description,
-                    price,
-                  })
-                }}
-                className="flex items-center justify-center hover:bg-purple-400 py-2 px-1 w-8 rounded"
-              >
-                <Plus size={18} weight="fill" className="text-purple-900" />
-              </button>
-            </div>
-            <button className="bg-purple-200 hover:bg-purple-400 text-purple-900 rounded p-2">
-              <Link to="/checkout">
-                <ShoppingCart size={18} weight="fill" />
-              </Link>
+            <button
+              onClick={() => {
+                handleAddToCart({
+                  id,
+                  coffeeName,
+                  image,
+                  tag,
+                  description,
+                  price,
+                })
+              }}
+              className="flex w-8 items-center justify-center rounded px-1 py-2 hover:bg-purple-400 dark:hover:bg-amber-700"
+            >
+              <Plus
+                size={18}
+                weight="fill"
+                className="text-purple-900 dark:text-amber-900"
+              />
             </button>
           </div>
+          <button className="rounded bg-purple-200 p-2 text-purple-900 hover:bg-purple-400 dark:bg-[#E6E5E5] dark:text-amber-950 dark:hover:bg-amber-500">
+            <Link to="/checkout">
+              <ShoppingCart size={18} weight="fill" />
+            </Link>
+          </button>
         </div>
       </div>
     </div>

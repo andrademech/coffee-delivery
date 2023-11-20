@@ -1,14 +1,14 @@
 import coffeeDeliveryLogo from '../../assets/coffee_delivery_logo.svg'
-import { MapPin, ShoppingCart } from 'phosphor-react'
+import coffeeDeliveryDarkModeLogo from '../../assets/coffee_delivery_logo_dm.svg'
+import { MapPin, Moon, ShoppingCart, Sun } from 'phosphor-react'
 import { useQuantity } from '../../hooks/useQuantity'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import * as Switch from '@radix-ui/react-switch'
 
 export function Header() {
   const { totalCartQuantity } = useQuantity()
 
-  const [darkMode, setDarkMode] = useState<boolean>(false)
+  const [darkMode, setDarkMode] = useState<boolean>(true)
 
   function handleDarkMode() {
     setDarkMode(!darkMode)
@@ -20,56 +20,75 @@ export function Header() {
   }
 
   return (
-    <div className="flex items-center h-[6.5rem] justify-between">
-      <Link to="/">
-        <img src={coffeeDeliveryLogo} width={80} alt="Coffee Delivery Logo" />
+    <div className="flex h-[6.5rem] items-center justify-between">
+      <Link
+        to="/"
+        className="rounded p-2 hover:border hover:border-purple-600 dark:bg-zinc-800 dark:hover:border dark:hover:border-purple-400"
+      >
+        {darkMode === true ? (
+          <img src={coffeeDeliveryLogo} width={70} alt="Coffee Delivery Logo" />
+        ) : (
+          <img
+            src={coffeeDeliveryDarkModeLogo}
+            width={70}
+            alt="Coffee Delivery Logo"
+          />
+        )}
       </Link>
 
       <div className="flex items-center gap-4">
-        <div className="gap-4 flex justify-center">
-          <div className="flex gap-4 h-[2.375rem] items-center justify-between">
-            <div className="flex justify-between items-center p-2 h-full gap-1 bg-purple-200 rounded">
-              <MapPin size={22} weight="fill" className="text-purple-600" />
-              <span className="text-base text-purple-900">João Pessoa, PB</span>
+        <div className="flex justify-center gap-4">
+          <div className="flex h-[2.375rem] items-center justify-between gap-4">
+            <div className="flex h-full items-center justify-between gap-1 rounded bg-purple-200 p-2 dark:bg-zinc-800">
+              <MapPin
+                size={22}
+                weight="fill"
+                className="text-purple-600 dark:text-purple-300"
+              />
+              <span className="hidden text-base text-purple-900 dark:text-purple-300 sm:inline">
+                João Pessoa, PB
+              </span>
             </div>
-            <button className="bg-purple-100 h-full w-9 flex justify-center items-center rounded">
+            <button className="flex h-full w-9 items-center justify-center rounded bg-purple-200 hover:border hover:border-purple-600 dark:bg-zinc-800 dark:hover:border-purple-400">
               {totalCartQuantity > 0 ? (
                 <Link to="/checkout">
                   <ShoppingCart
                     size={24}
                     weight="fill"
-                    className="text-purple-600"
+                    className="text-purple-600 dark:text-purple-300"
                   />
                 </Link>
               ) : (
                 <ShoppingCart
                   size={24}
                   weight="fill"
-                  className="text-purple-600"
+                  className="text-purple-600 dark:text-purple-300"
                 />
               )}
             </button>
             {totalCartQuantity > 0 && (
-              <div className="flex items-center justify-center text-white text-sm w-5 h-5 -ml-6 mb-7 bg-amber-700 rounded-full">
+              <div className="-ml-6 mb-7 flex h-5 w-5 items-center justify-center rounded-full bg-amber-700 text-sm text-white">
                 {totalCartQuantity}
               </div>
             )}
-            <div className="flex items-center">
-              <label
-                className="dark:text-white text-[15px] leading-none pr-[15px]"
-                htmlFor="airplane-mode"
-              >
-                DarkMode
-              </label>
-              <Switch.Root
-                className="w-[42px] h-[25px] bg-blackA9 rounded-full relative shadow-[0_2px_10px] shadow-blackA7 focus:shadow-[0_0_0_2px] focus:shadow-black data-[state=checked]:bg-black outline-none cursor-default"
-                id="airplane-mode"
-                style={{ WebkitTapHighlightColor: 'rgba(0,0,0)' }}
-                onClick={handleDarkMode}
-              >
-                <Switch.Thumb className="block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA7 transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
-              </Switch.Root>
-            </div>
+            <button
+              className="flex h-10 w-10 items-center justify-center rounded bg-purple-200 hover:border hover:border-purple-600 dark:bg-zinc-800 dark:hover:border-purple-400"
+              onClick={handleDarkMode}
+            >
+              {darkMode === true ? (
+                <Moon
+                  width={22}
+                  className="text-purple-600 dark:text-purple-300"
+                  weight="fill"
+                />
+              ) : (
+                <Sun
+                  width={22}
+                  className="text-purple-600 dark:text-purple-300"
+                  weight="fill"
+                />
+              )}
+            </button>
           </div>
         </div>
       </div>

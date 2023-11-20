@@ -7,7 +7,7 @@ import * as zod from 'zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useContextSelector } from 'use-context-selector'
-import { OrdersContext } from '../../contexts/OrderContext'
+import { CartContext } from '../../contexts/CartContext'
 
 const newCheckoutFormValidationSchema = zod.object({
   cep: zod.string().nonempty(),
@@ -30,14 +30,6 @@ export function Checkout() {
 
   const navigate = useNavigate()
 
-  const { orders, createOrders } = useContextSelector(
-    OrdersContext,
-    (context) => ({
-      orders: context.orders,
-      createOrders: context.createOrder,
-    }),
-  )
-
   const newCheckoutForm = useForm<NewCheckoutFormData>({
     resolver: zodResolver(newCheckoutFormValidationSchema),
     defaultValues: {
@@ -54,6 +46,10 @@ export function Checkout() {
 
   const { handleSubmit } = newCheckoutForm
 
+  const { createOrder } = useContextSelector(CartContext, (context) => ({
+    createOrder: context.createOrder,
+  }))
+
   function handleNewCheckoutFormSubmit(data: NewCheckoutFormData) {
     console.log(`Here is your data: ${JSON.stringify(data, null, 2)}`)
 
@@ -61,9 +57,10 @@ export function Checkout() {
     You selected ${totalCartQuantity} coffee(s) and your total is ${totalCartQuantity}
     `)
 
-    createOrders({
+    // Create new order
+    createOrder({
       order: {
-        id: Math.random(),
+        id: Math.floor(Math.random() * 1000),
         cep: data.cep,
         address: data.address,
         number: data.number,
@@ -75,39 +72,35 @@ export function Checkout() {
       },
     })
 
-    console.log({ orders })
-
     // Sending to success route
     navigate('/success')
   }
 
   return (
-    <div className="flex flex-col xl:flex-row gap-4 items-center xl:items-start mb-4">
-      <form
-        onSubmit={handleSubmit(handleNewCheckoutFormSubmit)}
-        className="flex flex-col items-center gap-4 mx-auto"
-      >
-        {totalCartQuantity > 0 ? (
-          <FormProvider {...newCheckoutForm}>
-            <CheckoutForm />
-            <SelectedCoffees />
-          </FormProvider>
-        ) : (
-          <div className="flex flex-col items-center justify-center gap-4 bg-purple-100 p-8 rounded w-full">
-            <h3 className="text-lg">Nenhum café selecionado</h3>
-            <p className="text-sm text-center">
-              Retorne para selecionar um café e finalizar seu pedido
-            </p>
-            <Link to="/">
-              <img
-                src={coffeeDeliveryLogo}
-                width={80}
-                alt="Coffee Delivery Logo"
-              />
-            </Link>
-          </div>
-        )}
-      </form>
-    </div>
+    <form
+      onSubmit={handleSubmit(handleNewCheckoutFormSubmit)}
+      className="flex flex-col items-center justify-center gap-4 lg:flex-row lg:items-start"
+    >
+      {totalCartQuantity > 0 ? (
+        <FormProvider {...newCheckoutForm}>
+          <CheckoutForm />
+          <SelectedCoffees />
+        </FormProvider>
+      ) : (
+        <div className="flex w-full flex-col items-center justify-center gap-4 rounded bg-purple-100 p-8">
+          <h3 className="text-lg">Nenhum café selecionado</h3>
+          <p className="text-center text-sm">
+            Retorne para selecionar um café e finalizar seu pedido
+          </p>
+          <Link to="/">
+            <img
+              src={coffeeDeliveryLogo}
+              width={80}
+              alt="Coffee Delivery Logo"
+            />
+          </Link>
+        </div>
+      )}
+    </form>
   )
 }

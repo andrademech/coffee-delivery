@@ -25,7 +25,7 @@ export function Button({
       onClick={onClick}
       type={htmlType}
       className={cx(
-        'h-[2.375rem] rounded px-6 transition-all duration-[400ms] cursor-pointer drop-shadow-soft',
+        'drop-shadow-soft h-[2.375rem] cursor-pointer rounded px-6 transition-all duration-[400ms]',
         className,
       )}
       style={{ width }}

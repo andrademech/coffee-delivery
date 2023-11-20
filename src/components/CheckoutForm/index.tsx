@@ -44,18 +44,33 @@ const inputData = [
 const radioGroupData = [
   {
     id: 'credit-card',
-    label: 'Cartão de Crédito',
-    icon: <CreditCard size={22} className="text-purple-700 rounded" />,
+    label: 'Crédito',
+    icon: (
+      <CreditCard
+        size={22}
+        className="rounded text-purple-700 dark:text-purple-950"
+      />
+    ),
   },
   {
     id: 'debit-card',
-    label: 'Cartão de Débito',
-    icon: <Bank size={22} className="text-purple-700 rounded" />,
+    label: 'Débito',
+    icon: (
+      <Bank
+        size={22}
+        className="rounded text-purple-700 dark:text-purple-950"
+      />
+    ),
   },
   {
     id: 'pix',
     label: 'Pix',
-    icon: <Money size={22} className="text-purple-700 rounded" />,
+    icon: (
+      <Money
+        size={22}
+        className="rounded text-purple-700 dark:text-purple-950"
+      />
+    ),
   },
 ]
 
@@ -63,18 +78,23 @@ export default function CheckoutForm() {
   const { register, control } = useFormContext()
 
   return (
-    <>
-      <div className="w-[40rem] flex flex-col p-10 bg-[#F3F2F2] rounded">
-        <div className="flex w-full justify-center gap-2 items-start">
-          <MapPinLine size={22} className="text-purple-500 rounded" />
-          <div className="flex flex-col w-full items-center">
-            <h2 className="text-left text-base w-full">Endereço de Entrega</h2>
-            <span className="text-left font-light text-sm w-full">
+    <div className="flex w-full max-w-[30rem] flex-col">
+      <div className="flex flex-col rounded bg-[#F3F2F2] px-6 py-4 dark:bg-zinc-800 dark:text-zinc-400 md:p-10">
+        <div className="flex items-start justify-center gap-2">
+          <MapPinLine
+            size={22}
+            className="rounded text-purple-500 dark:text-purple-200"
+          />
+          <div className="flex w-full flex-col items-center">
+            <h2 className="w-full text-left text-base dark:text-purple-100">
+              Endereço de Entrega
+            </h2>
+            <span className="w-full text-left text-sm font-light dark:text-purple-100">
               Insira o endereço onde deseja receber seu pedido
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-4 mt-8">
+        <div className="mt-8 flex flex-col gap-4">
           {inputData.map((input) => (
             <input
               key={input.id}
@@ -82,29 +102,35 @@ export default function CheckoutForm() {
               id={input.id}
               placeholder={input.placeholder}
               {...register(input.id)}
-              className="w-full h-8 rounded px-4 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="h-8 w-full rounded border border-zinc-300 px-4 placeholder:text-zinc-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500 dark:border-zinc-600 dark:bg-zinc-600 dark:text-zinc-900 dark:placeholder:text-zinc-300 dark:focus:ring-purple-800"
             />
           ))}
         </div>
       </div>
-      <div className="w-[40rem] flex flex-col p-10 bg-[#F3F2F2] rounded">
-        <div className="flex w-full justify-center gap-2 items-start">
-          <CurrencyDollar size={22} className="text-purple-500 rounded" />
-          <div className="flex flex-col w-full items-center">
-            <h2 className="text-left text-base w-full">Pagamento</h2>
-            <span className="text-left font-light text-sm w-full">
+
+      <div className="dark:bg-zinc mt-4 flex w-full flex-col rounded bg-[#F3F2F2] px-2 py-4 dark:bg-zinc-600 md:p-10">
+        <div className="flex w-full items-start justify-center gap-2">
+          <CurrencyDollar
+            size={22}
+            className="rounded text-purple-500 dark:text-purple-100"
+          />
+          <div className="flex w-full flex-col items-center">
+            <h2 className="w-full text-left text-base dark:text-purple-100">
+              Pagamento
+            </h2>
+            <span className="w-full text-left text-sm font-light dark:text-purple-100">
               O pagamento é feito na entrega. Escolha a forma que deseja pagar
             </span>
           </div>
         </div>
-        <div className="flex gap-3 mt-8">
+        <div className="mt-8 flex gap-3">
           <Controller
             name="transactionMethod"
             control={control}
             render={({ field }) => {
               return (
                 <RadioGroup.Root
-                  className="flex gap-4 w-full justify-between items-center"
+                  className="flex w-full items-center justify-between gap-1 overflow-y-auto md:gap-4"
                   onValueChange={field.onChange}
                   value={field.value}
                 >
@@ -112,7 +138,7 @@ export default function CheckoutForm() {
                     <RadioGroup.Item
                       key={radio.id}
                       value={radio.id}
-                      className="flex justify-center items-center px-4 min-w-[140px] h-8 gap-4 rounded data-[state=checked]:bg-purple-300 py-5 hover:bg-purple-200 transition-colors"
+                      className="flex h-8 min-w-[7rem] items-center justify-center gap-4 rounded p-4 transition-colors hover:bg-purple-200 data-[state=checked]:bg-purple-300 dark:text-purple-950 dark:hover:bg-purple-200 dark:data-[state=checked]:bg-purple-300 dark:data-[state=checked]:text-purple-950"
                       {...register(radio.id)}
                     >
                       {radio.icon}
@@ -125,6 +151,6 @@ export default function CheckoutForm() {
           />
         </div>
       </div>
-    </>
+    </div>
   )
 }
