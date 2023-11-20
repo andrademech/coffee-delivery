@@ -4,11 +4,13 @@ import {
   CurrencyDollar,
   MapPinLine,
   Money,
+  Warning,
 } from 'phosphor-react'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import { Controller, useFormContext } from 'react-hook-form'
+import { AlertMessage } from '../AlertMessage'
 
 const inputData = [
   {
@@ -75,7 +77,11 @@ const radioGroupData = [
 ]
 
 export default function CheckoutForm() {
-  const { register, control } = useFormContext()
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext()
 
   return (
     <div className="flex w-full max-w-[30rem] flex-col">
@@ -95,15 +101,23 @@ export default function CheckoutForm() {
           </div>
         </div>
         <div className="mt-8 flex flex-col gap-4">
-          {inputData.map((input) => (
-            <input
-              key={input.id}
-              type="text"
-              id={input.id}
-              placeholder={input.placeholder}
-              {...register(input.id)}
-              className="h-8 w-full rounded border border-zinc-300 px-4 placeholder:text-zinc-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500 dark:border-zinc-600 dark:bg-zinc-600 dark:text-zinc-900 dark:placeholder:text-zinc-300 dark:focus:ring-purple-800"
-            />
+          {inputData.map(({ id, placeholder }) => (
+            <>
+              <input
+                key={id}
+                type="text"
+                id={id}
+                placeholder={placeholder}
+                {...register(id)}
+                className="h-8 w-full rounded border border-zinc-300 px-4 placeholder:text-zinc-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500 dark:border-zinc-600 dark:bg-zinc-600 dark:text-zinc-900 dark:placeholder:text-zinc-300 dark:focus:ring-purple-800"
+              />
+              {errors[id] && (
+                <AlertMessage
+                  message={errors[id]?.message as string}
+                  Icon={Warning}
+                />
+              )}
+            </>
           ))}
         </div>
       </div>
@@ -130,7 +144,7 @@ export default function CheckoutForm() {
             render={({ field }) => {
               return (
                 <RadioGroup.Root
-                  className="flex w-full items-center justify-between gap-1 overflow-y-auto md:gap-4"
+                  className="flex w-full flex-col justify-between gap-1 xs:flex-row md:gap-4"
                   onValueChange={field.onChange}
                   value={field.value}
                 >
@@ -138,11 +152,11 @@ export default function CheckoutForm() {
                     <RadioGroup.Item
                       key={radio.id}
                       value={radio.id}
-                      className="flex h-8 min-w-[7rem] items-center justify-center gap-4 rounded p-4 transition-colors hover:bg-purple-200 data-[state=checked]:bg-purple-300 dark:text-purple-950 dark:hover:bg-purple-200 dark:data-[state=checked]:bg-purple-300 dark:data-[state=checked]:text-purple-950"
+                      className="mx-auto flex h-8 min-w-[80%] items-center justify-between gap-4 rounded px-12 py-5 font-bold transition-colors hover:bg-purple-200 data-[state=checked]:bg-purple-300 dark:text-purple-950 dark:hover:bg-purple-200 dark:data-[state=checked]:bg-purple-300 dark:data-[state=checked]:text-purple-950 xs:min-w-[7rem] xs:justify-center xs:p-0"
                       {...register(radio.id)}
                     >
-                      {radio.icon}
                       <span className="text-sm">{radio.label}</span>
+                      {radio.icon}
                     </RadioGroup.Item>
                   ))}
                 </RadioGroup.Root>

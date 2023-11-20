@@ -3,7 +3,7 @@ import { CartContext } from '../../contexts/CartContext'
 import { useQuantity } from '../../hooks/useQuantity'
 import { priceFormatter } from '../../utils/formatter'
 import { useEffect, useState } from 'react'
-import { useFormContext } from 'react-hook-form'
+// import { useFormContext } from 'react-hook-form'
 import { Button } from '../Button'
 
 import cx from 'classnames'
@@ -24,25 +24,25 @@ export function SelectedCoffees() {
       handleClearCart: context.handleClearCart,
     }))
 
-  const { watch } = useFormContext()
+  // const { watch } = useFormContext()
 
-  const formData = {
-    cep: watch('cep'),
-    address: watch('address'),
-    number: watch('number'),
-    complement: watch('complement'),
-    district: watch('district'),
-    city: watch('city'),
-    state: watch('state'),
-  }
+  // const formData = {
+  //   cep: watch('cep'),
+  //   address: watch('address'),
+  //   number: watch('number'),
+  //   complement: watch('complement'),
+  //   district: watch('district'),
+  //   city: watch('city'),
+  //   state: watch('state'),
+  // }
 
-  const isSubmitDisabled =
-    !formData.cep ||
-    !formData.address ||
-    !formData.number ||
-    !formData.district ||
-    !formData.city ||
-    !formData.state
+  // const isSubmitDisabled =
+  //   !formData.cep ||
+  //   !formData.address ||
+  //   !formData.number ||
+  //   !formData.district ||
+  //   !formData.city ||
+  //   !formData.state
 
   useEffect(() => {
     const itemCart = cart.find((item) => item.quantity)
@@ -155,15 +155,15 @@ export function SelectedCoffees() {
           </div>
           <button
             type="submit"
-            className={cx(
-              isSubmitDisabled
-                ? 'cursor-not-allowed bg-zinc-400'
-                : 'bg-purple-500 hover:bg-purple-600',
-              'flex w-full items-center justify-center gap-2 rounded px-4 py-2',
-            )}
-            disabled={isSubmitDisabled}
+            // className={cx(
+            //   isSubmitDisabled
+            //     ? 'cursor-not-allowed bg-zinc-400'
+            //     : 'bg-purple-500 hover:bg-purple-600',
+            //   'flex w-full items-center justify-center gap-2 rounded px-4 py-2',
+            // )}
+            className="flex w-full items-center justify-center gap-2 rounded bg-purple-500 px-4 py-2 hover:bg-purple-600" // disabled={isSubmitDisabled}
           >
-            {isSubmitDisabled ? (
+            {/* {isSubmitDisabled ? (
               <span className="font-bold text-white">
                 Ops... Observe o formulário
               </span>
@@ -171,7 +171,10 @@ export function SelectedCoffees() {
               <span className="font-bold text-white">
                 Yeah! Confirmar pedido 🔥
               </span>
-            )}
+            )} */}
+            <span className="font-bold text-white">
+              Yeah! Confirmar pedido 🔥
+            </span>
           </button>
         </>
       </div>

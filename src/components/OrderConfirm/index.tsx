@@ -16,7 +16,7 @@ export function OrderConfirm() {
         <h1 className="mt-8 w-full justify-start text-2xl text-purple-900 dark:text-amber-700">
           Uhu! Pedido Confirmado
         </h1>
-        <h4 className="text-purple-900 dark:text-amber-100">
+        <h4 className="text-purple-900 dark:text-zinc-300">
           Agora é só aguardar que em breve você receberá seu pedido em casa
         </h4>
 
@@ -44,7 +44,7 @@ export function OrderConfirm() {
                       className="rounded-full bg-purple-600 p-[4px] text-white"
                     />
                     <div className="flex flex-col">
-                      <span className="font-bold dark:text-zinc-950">
+                      <span className="font-bold dark:text-amber-700">
                         Entrega em
                         <strong className="text-zinc-900 dark:text-zinc-300">{` ${address}, ${number}`}</strong>
                       </span>
@@ -59,7 +59,7 @@ export function OrderConfirm() {
                       className="rounded-full bg-amber-600 p-[6px] text-white"
                     />
                     <div className="flex flex-col">
-                      <span className="font-bold text-zinc-900 dark:text-zinc-950">
+                      <span className="font-bold text-zinc-900 dark:text-amber-700">
                         Previsão de entrega
                       </span>
                       <strong className="text-zinc-900 dark:text-zinc-300">
@@ -75,7 +75,7 @@ export function OrderConfirm() {
                       className="rounded-full bg-yellow-600 p-[6px] text-white"
                     />
                     <div className="flex flex-col">
-                      <span className="font-bold text-zinc-900 dark:text-zinc-950">
+                      <span className="font-bold text-zinc-900 dark:text-amber-700">
                         Pagamento na entrega
                       </span>
                       <strong className="text-zinc-900 dark:text-zinc-300">
