@@ -1,10 +1,10 @@
 import { useContextSelector } from 'use-context-selector'
 import Success from '../../assets/success.svg'
-import { OrdersContext } from '../../contexts/OrderContext'
+import { CartContext } from '../../contexts/CartContext'
 import { Clock, MapPin, Money } from 'phosphor-react'
 
 export function OrderConfirm() {
-  const { orders } = useContextSelector(OrdersContext, (context) => ({
+  const { orders } = useContextSelector(CartContext, (context) => ({
     orders: context.orders,
   }))
 
