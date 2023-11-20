@@ -4,11 +4,13 @@ import {
   CurrencyDollar,
   MapPinLine,
   Money,
+  Warning,
 } from 'phosphor-react'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import { Controller, useFormContext } from 'react-hook-form'
+import { AlertMessage } from '../AlertMessage'
 
 const inputData = [
   {
@@ -110,7 +112,10 @@ export default function CheckoutForm() {
                 className="h-8 w-full rounded border border-zinc-300 px-4 placeholder:text-zinc-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500 dark:border-zinc-600 dark:bg-zinc-600 dark:text-zinc-900 dark:placeholder:text-zinc-300 dark:focus:ring-purple-800"
               />
               {errors[id] && (
-                <span className="text-red-500">{errors[id].message}</span>
+                <AlertMessage
+                  message={errors[id]?.message as string}
+                  Icon={Warning}
+                />
               )}
             </>
           ))}

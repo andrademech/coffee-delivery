@@ -8,7 +8,7 @@ export function CoffeeList() {
         Nossos cafés
       </h1>
 
-      <div className="xs:gap-11 grid grid-cols-1 gap-6 pb-8 sm:grid-cols-2 sm:gap-24 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 pb-8 xs:gap-11 sm:grid-cols-2 sm:gap-24 lg:grid-cols-3">
         {coffeeList.map(
           ({ id, coffeeName, description, image, price, tag }) => {
             return (
