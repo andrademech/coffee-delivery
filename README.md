@@ -10,7 +10,7 @@ https://coffee-delivery-silk.vercel.app/
 
 On your terminal, run the following command:
 
-### `git clone -> https://github.com/andrademech/coffee-delivery`
+### `git clone https://github.com/andrademech/coffee-delivery`
 
 ## Available Scripts
 
